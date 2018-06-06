@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script src="../static/jquery.js"></script>
+    <script src="../static/bootstrap.min.js"></script>
+    <script src="../static/Vue-2.5.16.js"></script>
+    <script src="../static/bootstrap-table.min.js"></script>
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/bootstrap-table.min.css">
+</head>
+<body>
+<button id='TB'>test</button>
+<span>this is index page</span>
+<a href="{{ url_for('search', q='hello') }}">跳转到搜索页面 </a>
+<table id='table'></table>
+</body>
+<script>
+    $('#TB').on('click', function () {
+        $.ajax({
+            url: "/table/", success: function (data) {
+                temp = data
+                {#$('#table') 选择器 选出来的是元素#}
+                {# bootstrapTable 是个function #}
+{#                {
+{#                    columns: [{
+{#                        field: data.username,
+{#                        title: 'username'
+{#                    }, {
+{#                        field: 'age',
+{#                        title: 'age',
+{#                    }, {
+{#                        field: 'sex',
+{#                        title: 'sex'
+{#                    }],
+{#                    data: data,
+{#                }这是一个dictionary#}
+{#                columns的值是一个list#}
+{#                ....#}
+{#                你一个一个分析清楚了在改#}
+{#                可以尝试 但别盲目#}
+                $('#table').bootstrapTable({
+                    columns: [{
+                        field: 'username',
+                        title: 'username'
+                    }, {
+                        field: 'age',
+                        title: 'age',
+                    }, {
+                        field: 'sex',
+                        title: 'sex'
+                    }],
+                    data: [{username:'sally',
+                    age:'18',
+                    sex:'girl'}],
+                });
+            }
+        });
+
+
+    })
+</script>
+</html>
